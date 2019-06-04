@@ -1,10 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css");
-
 body {
   background: white;
   color: black;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 14px;
   margin: 70px 0;
 }
@@ -22,15 +21,14 @@ body {
 
 .chatbar-message {
   flex: 8;
-
-  .chatbar-username {
-    border: 1px solid black;
-    display: block;
-    height: 40px;
-    line-height: 40px;
-    margin: 5px;
-    padding: 0 9px;
-  }
+}
+.chatbar-message .chatbar-username {
+  border: 1px solid black;
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  margin: 5px;
+  padding: 0 9px;
 }
 
 .chatbar-username {
@@ -84,3 +82,5 @@ body {
   padding: 0 10px;
   text-decoration: none;
 }
+
+/*# sourceMappingURL=index.css.map */
