@@ -33,7 +33,6 @@ wss.on('connection', (ws) => {
                username : messageObj.username,
                content : messageObj.content
            }
-        //    console.log(newMessageObj);
            wss.broadcast(JSON.stringify(newMessageObj));
     });
   // Set up a callback for when a client closes the socket. This usually means they closed their browser.
