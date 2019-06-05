@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MessageList from './MessageList.jsx';
 import ChatBar from './chatBar.jsx';
+
 // messageList 
 class App extends Component {
 
@@ -8,30 +9,50 @@ class App extends Component {
     super(props);
     this.state = {
       currentUser : {name: 'Bob'},
-      messages: [
-        {
-          id : 1,
-          username: "Bob",
-          content: "Has anyone seen my marbles?",
-        },
-        {
-          id : 2,
-          username: "Anonymous",
-          content: "No, I think you lost them. You lost your marbles Bob. You lost them for good."
-        }
-      ]
+      messages: []
     }
     this.addMessage=this.addMessage.bind(this);
+    this.socket = new WebSocket("ws://localhost:3001");
+
+    // this.socket = new WebSocket("ws://localhost:3001");
   }
 
   addMessage(message) {
-    const newMessage = {
-      id: this.state.messages.length + 2, // ------------------->>> BAD SOLUTION NEEDS TO BE GENERATED
+    console.log('inside add message');
+    console.log(this.state.currentUser.name); 
+    const messageData = {
       username: this.state.currentUser.name,
       content: message
-    };
-    const messages = this.state.messages.concat(newMessage)
-    this.setState({messages: messages})
+    }
+    // console.log(messageData.username);
+    this.socket.send(JSON.stringify(messageData));
+    // const newMessage = {
+    //   id: this.state.messages.length + 2, // ------------------->>> BAD SOLUTION NEEDS TO BE GENERATED
+    //   username: this.state.currentUser.name,
+    //   content: message
+    // };
+    // const messages = this.state.messages.concat(newMessage)
+    // this.setState({messages: messages})
+  };
+
+  // catchMessage = () => {
+  //   this.sockect.onmessage = function()
+  // }
+  componentDidMount() { 
+    console.log(this.state.messages);
+    console.log(this.socket);
+    this.socket.onopen = (socket) => {
+      console.log('Connected to the server');
+    }
+    this.socket.onmessage = (newMessage) => {
+      // console.log(newMessage);
+      // console.log(this.state.messages);
+      const newMessages = [...this.state.messages,JSON.parse(newMessage.data)];
+      // console.log(newMessages);
+      this.setState({
+        messages : newMessages
+      })
+    }
   };
 
   render() {
