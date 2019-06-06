@@ -15,14 +15,14 @@ class ChatBar extends Component {
         })
     }
     
-     handleMessageChange = (e) => {
+    handleUsernameSubmit = () => {
+        this.state.currUsername && this.props.changeUser(this.state.currUsername);
+    }
+
+    handleMessageChange = (e) => {
         this.setState({
             currMessage : e.target.value
         })
-    }
-
-    handleUserChange = () => {
-        this.state.currUsername && this.props.changeUser(this.state.currUsername);
     }
 
     handleMessageSubmit = (e) => {
@@ -38,8 +38,16 @@ class ChatBar extends Component {
         
         return (
             <footer className="chatbar">
-                <input className="chatbar-username" placeholder={this.props.user.name} onBlur = {this.handleUserChange} onChange={this.handleUsernameChange} value={this.state.currUsername}/>
-                <input className="chatbar-message" placeholder="Type a message and hit ENTER" onKeyDown={this.handleMessageSubmit} onChange = {this.handleMessageChange} value={this.state.currMessage}/>
+                <input className="chatbar-username" 
+                placeholder={this.state.currUsername} 
+                onBlur = {this.handleUsernameSubmit } 
+                onChange={this.handleUsernameChange} 
+                value={this.state.currUsername}/>
+                <input className="chatbar-message" 
+                placeholder="Type a message and hit ENTER" 
+                onKeyDown={this.handleMessageSubmit} 
+                onChange = {this.handleMessageChange} 
+                value={this.state.currMessage}/>
             </footer> 
         );
     }

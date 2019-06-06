@@ -33,10 +33,10 @@ wss.on('connection', (ws) => {
     const messageObj = JSON.parse(message);
     if(messageObj.type === 'messageNotification'){
       newMessageObj = {
-          id : randomId(),
-          type : messageObj.type,
-          username : messageObj.username,
-          content : messageObj.content
+        id : randomId(),
+        type : messageObj.type,
+        username : messageObj.username,
+        content : messageObj.content
       }
       wss.broadcast(JSON.stringify(newMessageObj));
     }

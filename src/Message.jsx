@@ -1,19 +1,17 @@
 import React, {Component} from 'react';
 
-class Message extends Component {
+function Message({message}) {
     
-    render() {
-    if(this.props.message.type === 'userChangeNotification') {
-        return <div className="message system"> {this.props.message.notification} </div>; 
+    if(message.type === 'userChangeNotification') {
+        return <div className="message system"> {message.notification} </div>; 
     }
-    else if (this.props.message.type === 'messageNotification'){
-    return (
-        <div className="message">
-            <span className="message-username">{this.props.message.username ? this.props.message.username:'Anonymouse'}</span>
-            <span className="message-content">{this.props.message.content}</span>
-        </div>)
+    else if (message.type === 'messageNotification'){
+        return (
+            <div className="message">
+                <span className="message-username">{message.username ? message.username:'Anonymouse'}</span>
+                <span className="message-content">{message.content}</span>
+            </div>)
     }
-}
 }
 
 export default Message;
