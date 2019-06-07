@@ -36,7 +36,8 @@ wss.on('connection', (ws) => {
         id : randomId(),
         type : messageObj.type,
         username : messageObj.username,
-        content : messageObj.content
+        content : messageObj.content,
+        color : colors[Math.random()*4]
       }
       wss.broadcast(JSON.stringify(newMessageObj));
     }

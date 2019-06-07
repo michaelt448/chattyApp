@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import MessageList from './MessageList.jsx';
 import ChatBar from './chatBar.jsx';
 
-// messageList 
 class App extends Component {
 
   constructor(props) {
@@ -12,12 +11,11 @@ class App extends Component {
       messages: [],
       totalUsers : 0
     }
-    this.addMessage=this.addMessage.bind(this);
     this.socket = new WebSocket("ws://localhost:3001");
   }
 
   changeUser = (username) => {
-    const user = this.state.currentUser.name ? this.state.currentUser.name : 'Anonymouse';
+    const user = this.state.currentUser.name ? this.state.currentUser.name : 'Anonymous';
     const notification = `${user} changed his name to ${username}`;
     this.setState({
       currentUser : {
@@ -34,7 +32,7 @@ class App extends Component {
     this.socket.send(JSON.stringify(messageData));
   }
 
-  addMessage(message) {
+  addMessage = (message) => {
     const messageData = {
       type : 'messageNotification',
       username: this.state.currentUser.name,

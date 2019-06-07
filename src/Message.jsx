@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 function Message({message}) {
     
@@ -8,8 +8,12 @@ function Message({message}) {
     else if (message.type === 'messageNotification'){
         return (
             <div className="message">
-                <span className="message-username">{message.username ? message.username:'Anonymouse'}</span>
-                <span className="message-content">{message.content}</span>
+                <span className="message-username">
+                    {message.username ? message.username:'Anonymous'}
+                </span>
+                <span className="message-content">
+                    {message.content}
+                </span>
             </div>)
     }
 }
