@@ -8,7 +8,7 @@ class ChatBar extends Component {
             currUsername : ''
         }
     }
-    
+
     handleUsernameChange = (e) => {
         this.setState({
             currUsername : e.target.value
@@ -27,7 +27,7 @@ class ChatBar extends Component {
 
     handleMessageSubmit = (e) => {
         if(e.key === 'Enter') {
-            this.props.addMessage(this.state.currMessage);
+            this.props.sendChangeToServer(this.state.currMessage);
             this.setState({
                 currMessage : ''
             })
@@ -39,6 +39,7 @@ class ChatBar extends Component {
         return (
             <footer className="chatbar">
                 <input className="chatbar-username" 
+                name="user"
                 placeholder={this.state.currUsername} 
                 onBlur = {this.handleUsernameSubmit } 
                 onChange={this.handleUsernameChange} 

@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css");
 
+html {
+  background-color:black;
+}
+
 body {
   background: white;
   color: black;
@@ -22,21 +26,24 @@ body {
 
 .chatbar-message {
   flex: 8;
-
-  .chatbar-username {
-    border: 1px solid black;
-    display: block;
-    height: 40px;
-    line-height: 40px;
-    margin: 5px;
-    padding: 0 9px;
-  }
+  background-color: black;
+  color:red;
+  border-color: tomato;
+  padding: .2em 1%;
 }
 
 .chatbar-username {
   flex: 2;
+  background-color: black;
+  color:red;
+  border-color: tomato;
+  padding: .2em 1%;
 }
 
+.messages {
+  color:red;
+  background-color: black;
+}
 .message {
   display: flex;
   padding: 5px;
@@ -63,6 +70,9 @@ body {
 }
 
 .navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   background: tomato;
   border-bottom: 1px solid black;
   height: 60px;
@@ -83,4 +93,9 @@ body {
   line-height: 60px;
   padding: 0 10px;
   text-decoration: none;
+}
+
+.user-counter {
+  font-size: 1.2em;
+  color: black;
 }

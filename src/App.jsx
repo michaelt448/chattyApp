@@ -21,32 +21,24 @@ class App extends Component {
       currentUser : {
         name : username
       }
-    },() => this.signalChangedUser(notification)); 
+    },() => this.sendChangeToServer(notification,true)); 
   };
 
-  signalChangedUser = (notification) => {
+  sendChangeToServer = (message,type) => {
+    const notificationType = type ? 'userChangeNotification' : 'messageNotification'
     const messageData = {
-      type : 'userChangeNotification',
-      notification : notification
-    }
-    this.socket.send(JSON.stringify(messageData));
-  }
-
-  addMessage = (message) => {
-    const messageData = {
-      type : 'messageNotification',
+      type : notificationType,
       username: this.state.currentUser.name,
       content: message
     }
     this.socket.send(JSON.stringify(messageData));
-  };
-
+  }
   componentDidMount() { 
     this.socket.onmessage = (newMessage) => {
       const message = JSON.parse(newMessage.data);
       if(message.type === 'number') {
         this.setState({
-          totalUsers : message.size
+          totalUsers : message.content
         })
       }
       else {
@@ -62,13 +54,13 @@ class App extends Component {
     return (
       <div>
         <nav className="navbar">
-          <a href="/" className="navbar-brand">Chatty</a>
-          <p> Users : {this.state.totalUsers}</p>
+          <a href="/" className="navbar-brand">The Night Chat</a>
+          <p className='user-counter'> Users : {this.state.totalUsers}</p>
         </nav>
         <MessageList messages={this.state.messages} 
         notification={this.state.notification}/>
         <ChatBar switchUser={this.switchUser} 
-        addMessage={this.addMessage} 
+        sendChangeToServer={this.sendChangeToServer} 
         changeUser={this.changeUser} 
         user={this.state.currentUser}/>
       </div>

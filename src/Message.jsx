@@ -3,7 +3,7 @@ import React from 'react';
 function Message({message}) {
     
     if(message.type === 'userChangeNotification') {
-        return <div className="message system"> {message.notification} </div>; 
+        return <div className="message system"> {message.content} </div>; 
     }
     else if (message.type === 'messageNotification'){
         return (
